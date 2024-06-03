@@ -274,7 +274,7 @@ traindata,testdata,valdata = get_data(args)
 
 
 model = get_model(args)
-inf = Inference(model,'T_mode',5000)
+inf = Inference(model,'T_mode',args,5000)
 agent = Agent(model,args,5000)
 try: 
     model.load(os.path.join(args.save_path, "pretrained_best.model"))
