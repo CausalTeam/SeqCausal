@@ -24,8 +24,11 @@ class arg:
 args = arg()
 args.model = 'simple'
 args.dataset = 'IHDP'
+args.train_lr = float(0.001)
+args.missing_ratio = float(0)
+args.task_id = int(2)
 args.val_test_split = [0.25,0.25]
-args.n_feature = int(25)
+args.n_feature = int(58) if args.dataset == 'ACIC2016' else int(25)
 args.disable_cuda = False
 args.complete = False
 args.pretrain = int(1000)
@@ -101,7 +104,7 @@ args.data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),'datase
 if not os.path.exists(args.save_path):
     os.makedirs(args.save_path)
 
-def exp_gen(agent,inference,env,n_step,record = None):
+def exp_gen(agent,inference,env,val_env,n_step,record = None):
     env.reset()
     agent.replay_buffer.reset()
     inference.replay_buffer.reset()
@@ -143,13 +146,57 @@ def exp_gen(agent,inference,env,n_step,record = None):
             mb_observe[store_id],mb_acquired[store_id],mb_actions[store_id],mb_rewards[store_id]=[],[],[],[]
             mb_next_observe[store_id],mb_next_acquired[store_id],mb_done[store_id]=[],[],[]
             inference.replay_buffer.push(list(zip(observe[done],acquired[done],treatments[done],y_fact[done])))
+    val_env.reset()
+    agent.val_buffer.reset()
+    inference.val_buffer.reset()
+    mb_acquired = [[] for _ in range(val_env.n_env)]
+    mb_next_acquired = [[] for _ in range(val_env.n_env)]
+    mb_observe = [[] for _ in range(val_env.n_env)]
+    mb_next_observe = [[] for _ in range(val_env.n_env)]
+    mb_actions = [[] for _ in range(val_env.n_env)]
+    mb_rewards = [[] for _ in range(val_env.n_env)]
+    mb_done = [[] for _ in range(val_env.n_env)]
+    for step in tqdm(range(ceil((val_env.dataset.n_data)*(val_env.n_action)/val_env.n_env + val_env.n_action))):
+        acquired = val_env.acquired.clone()
+        next_acquired = val_env.acquired.clone()
+        observe = val_env.observe.clone()
+        next_observe = val_env.observe.clone()
+        treatments = val_env.treatments.clone()
+        y_fact = val_env.y_fact.clone()
+        _,actions = agent.select_action(observe,acquired,agent.eps)
+        val_env.step(actions)
+        rewards = val_env.rewards.clone()
+        done = val_env.terminal.clone()
+        next_acquired[~done] = val_env.acquired.clone()[~done]
+        next_observe[~done] = val_env.observe.clone()[~done]
+        for i in range(val_env.n_env):
+            mb_acquired[i].append(acquired[i])
+            mb_next_acquired[i].append(next_acquired[i])
+            mb_observe[i].append(observe[i])
+            mb_next_observe[i].append(next_observe[i])
+            mb_actions[i].append(actions[i])
+            mb_rewards[i].append(rewards[i])
+            mb_done[i].append(done[i])
+            
+        if val_env.states.isnan().all():
+            break
+        if record != None:
+            record.push(torch.cat([observe,acquired,actions.unsqueeze(1),rewards.unsqueeze(1)],dim=-1))
+            
+        for store_id in torch.where(done)[0]:
+            agent.val_buffer.push([list(zip(mb_observe[store_id],mb_acquired[store_id],mb_actions[store_id],mb_rewards[store_id],
+                                               mb_next_observe[store_id],mb_next_acquired[store_id],mb_done[store_id]))])
+            mb_observe[store_id],mb_acquired[store_id],mb_actions[store_id],mb_rewards[store_id]=[],[],[],[]
+            mb_next_observe[store_id],mb_next_acquired[store_id],mb_done[store_id]=[],[],[]
+            inference.val_buffer.push(list(zip(observe[done],acquired[done],treatments[done],y_fact[done])))
 
 def test(agent,inference,testenv):
     print('start_test')
     test_start = time()
     agent.model.eval()
     testenv.reset()
-    mse = torch.empty(0).to(agent.device)
+    mse_tau = torch.empty(0).to(agent.device)
+    mse_y_fact = torch.empty(0).to(agent.device)
     n_feature = torch.empty(0).to(agent.device)
     n = ceil((testenv.dataset.n_data)*(testenv.n_action)/testenv.n_env + testenv.n_action)
     for epoch in range(n):
@@ -164,23 +211,26 @@ def test(agent,inference,testenv):
         done = testenv.terminal.clone()
         if done.any():
             y_hat = inference.model.get_y(observe[done],acquired[done])
-            if y_cf == None:
-                y_fact_hat = torch.where(treatments[done].bool(),y_hat[:,1],y_hat[:,0])
-                mse = torch.cat([mse,(nn.MSELoss(reduction= 'none')(y_fact_hat,y_fact[done].detach()))])
-            else:
+            if hasattr(testenv,'y_cf'):
                 tau_hat = y_hat[:,1] - y_hat[:,0]
                 tau = torch.where(treatments[done].bool(),y_fact[done]-y_cf[done],y_cf[done]-y_fact[done])
-                mse = torch.cat([mse,(nn.MSELoss(reduction= 'none')(tau_hat,tau.detach()))])
+                mse_tau = torch.cat([mse_tau,(nn.MSELoss(reduction= 'none')(tau_hat,tau.detach()))])
+            
+            y_fact_hat = torch.where(treatments[done].bool(),y_hat[:,1],y_hat[:,0])
+            mse_y_fact = torch.cat([mse_y_fact,(nn.MSELoss(reduction= 'none')(y_fact_hat,y_fact[done].detach()))])
             n_feature = torch.cat([n_feature,acquired[done].sum(-1)])
         if testenv.states.isnan().all():
             break
-    if y_cf != None:
-        print('OK')
     print('finish_test')
     print('time_use:',time()-test_start)
-    print('mean_mse:',mse.nanmean())
+    if hasattr(testenv.dataset,'y_cf'):
+        print('mse of tau:',mse_tau.nanmean())
+    print('mse of y_fact:',mse_y_fact.nanmean())
     print('mean_n_feature:',n_feature.nanmean())
-    return mse.nanmean(),n_feature.nanmean()
+    if hasattr(testenv.dataset,'y_cf'):
+        return mse_tau.nanmean(),n_feature.nanmean()
+    else:
+        return mse_y_fact.nanmean(),n_feature.nanmean()   
 
 class samples_buffer:
     def __init__(self,capacity) -> None:
@@ -245,7 +295,7 @@ for eps in np.arange(1,0,-0.05):
         file.write("current eps:{}\n".format(eps))
         file.write("exp_gen start:\n")
     start_time = time()
-    exp_gen(agent,inf,train_env,3000,record_buffer)
+    exp_gen(agent,inf,train_env,val_env,1000,record_buffer)
     time_use = time()-start_time
     with open(args.save_path+'/result.txt',"a") as file:
         file.write("exp_gen finish!time use:{}\n".format(time_use))
