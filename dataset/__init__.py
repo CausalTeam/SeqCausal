@@ -2,7 +2,7 @@
 def get_data(args):
     if args.dataset == 'simu_data':
         from .simu_data import gen_data
-        features,treatments,y_facts,y_cf,mu = gen_data(args.X_mode,args.T_mode,args.Y_mode)
+        features,treatments,y_facts,y_cf,mu = gen_data(args.X_mode,args.T_mode,args.Y_mode,sigma=args.sigma,dist=args.dist)
     elif args.dataset == 'IHDP':
         from .IHDP import read_ihdp
         features,treatments,y_facts,y_cf,mu = read_ihdp(args.data_path)

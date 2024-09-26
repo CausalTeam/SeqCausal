@@ -1,7 +1,28 @@
 import torch
 import torch.nn as nn
 import numpy as np
+import torch.nn.functional as F
 
+class DuelingNet(nn.Module):
+    def __init__(self, encoded_dim, hidden_sizes, shared_dim, n_actions,
+            group_norm=0, batch_norm=False):
+        super(DuelingNet, self).__init__()
+        self.shared = MLP(encoded_dim, hidden_sizes, shared_dim,
+                group_norm=group_norm, batch_norm=batch_norm)
+        self.pi_net = MLP(shared_dim, [shared_dim], n_actions)
+        self.v_net = MLP(shared_dim, [shared_dim], 1)
+        self.n_actions = n_actions
+
+    def forward(self, encoded):
+        tmp = self.shared(encoded)
+        tmp = F.relu(tmp)
+        self.adv = self.pi_net(tmp)
+        self.v = self.v_net(tmp)
+
+        output = self.v + (self.adv - torch.mean(self.adv, dim=1, keepdim=True))
+
+        return output
+    
 class MLP(nn.Module):
     def __init__(self, input_size, hidden_sizes, output_size, bias=True,
             dropout=False, p=0, group_norm=0, batch_norm=False):
@@ -47,7 +68,7 @@ class Model(nn.Module):
         self.device = args.device
         self.inference_0 = MLP(2*args.n_feature,args.inf_hidden_sizes,1)
         self.inference_1 = MLP(2*args.n_feature,args.inf_hidden_sizes,1)
-        self.policy = MLP(2*args.n_feature,args.policy_hidden_sizes,args.n_feature + 1)
+        self.policy = DuelingNet(2*args.n_feature,args.policy_hidden_sizes,args.n_feature,args.n_feature+1)
         self.n_feature = args.n_feature
         self.n_action = args.n_feature + 1   
         self.to(self.device)

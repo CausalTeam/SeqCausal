@@ -6,6 +6,9 @@ def get_model(args):
     elif args.model == 'simple':
         from .simple_model import Model
         model = Model(args)
+    elif args.model == 'simple2':
+        from .simple_model2 import Model
+        model = Model(args)
     else:
         raise Exception
     return model

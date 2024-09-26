@@ -8,7 +8,7 @@ from torch.optim import Adam,SGD
 from torch.utils.data import WeightedRandomSampler, BatchSampler, DataLoader, TensorDataset
 from time import time
 from tqdm import tqdm
-
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 class ReplayBuffer:
     def __init__(self, capacity):
         self.capacity = capacity
@@ -72,16 +72,12 @@ class Inference(nn.Module):
         else:
             raise Exception()
 
-        mult = 1 if args.dropout else 0
-        params = [{'params' : weight_params,
-            'weight_decay' : mult * (1 - args.p) / args.batch_size},
-            {'params' : bias_params,
-            'weight_decay' : mult * 1 / args.batch_size}]
+        params = [{'params' : weight_params},{'params' : bias_params}]
         if hasattr(self.model,'encoder'):
             params = params + [{'params':(model.encoder.parameters())}]
-        self.optimizer = SGD(params,lr=args.train_lr)
+        self.optimizer = SGD(params,lr=args.inf_lr)
         self.replay_buffer = ReplayBuffer(capacity=buffer_size)
-        self.val_buffer = ReplayBuffer(capacity=1000)
+        self.val_buffer = ReplayBuffer(capacity=buffer_size//10)
 
         
     def train(self,args,epochs=10,batch_size=256,criterion = nn.MSELoss(),record = None):
@@ -90,28 +86,36 @@ class Inference(nn.Module):
         self.model.eval()
         transitions = self.val_buffer.buffer
         transitions = list(zip(*transitions))
-        observes = torch.stack(transitions[0])
-        acquired = torch.stack(transitions[1])
-        treatments = torch.stack(transitions[2])
-        y_fact = torch.stack(transitions[3])
+        observes = torch.stack(transitions[0]).to(self.device)
+        acquired = torch.stack(transitions[1]).to(self.device)
+        treatments = torch.stack(transitions[2]).to(self.device)
+        y_fact = torch.stack(transitions[3]).to(self.device)
+        y_cf = torch.stack(transitions[4]).to(self.device)
         y_hat = self.model.get_y(observes,acquired)
-        y_fact_hat = torch.where(treatments.bool(),y_hat[:,1],y_hat[:,0])
-        val_loss = ((y_fact_hat-y_fact.detach())**2).nanmean()
+        y_0 = torch.where(treatments.bool(),y_cf,y_fact)
+        y_1 = torch.where(treatments.bool(),y_fact,y_cf)
+        val_loss = ((y_hat[:,0]-y_0.detach())**2).nanmean() + ((y_hat[:,1]-y_1.detach())**2).nanmean()
+
+
         min_mse = val_loss
         self.model.train()
 
         with open(args.save_path+'/result.txt',"a") as file:
             file.write("start inf train:\n")
+            file.write("epoch:0,val_loss:{}\n".format(val_loss))
+            print('epoch:0',' val_loss:',val_loss.item(),' SAVE')
             for epoch in range(epochs):
                 transitions = self.replay_buffer.sample(batch_size)
                 transitions = list(zip(*transitions))
-                observes = torch.stack(transitions[0])
-                acquired = torch.stack(transitions[1])
-                treatments = torch.stack(transitions[2])
-                y_fact = torch.stack(transitions[3])
+                observes = torch.stack(transitions[0]).to(self.device)
+                acquired = torch.stack(transitions[1]).to(self.device)
+                treatments = torch.stack(transitions[2]).to(self.device)
+                y_fact = torch.stack(transitions[3]).to(self.device)
+                y_cf = torch.stack(transitions[4]).to(self.device)
                 y_hat = self.model.get_y(observes,acquired)
-                y_fact_hat = torch.where(treatments.bool(),y_hat[:,1],y_hat[:,0])
-                loss = criterion(y_fact_hat, y_fact.detach())
+                y_0 = torch.where(treatments.bool(),y_cf,y_fact)
+                y_1 = torch.where(treatments.bool(),y_fact,y_cf)
+                loss = criterion(y_hat[:,0], y_0.detach()) + criterion(y_hat[:,1],y_1.detach())
                 if record != None:
                     record.push(torch.concat([observes,acquired,treatments.reshape(-1,1),y_fact.reshape(-1,1),y_hat],dim=-1))
                 self.optimizer.zero_grad()
@@ -119,24 +123,30 @@ class Inference(nn.Module):
                 self.optimizer.step()
                 if (epoch + 1) % 10 == 0:
                     self.model.eval()
-                    transitions = self.replay_buffer.sample(batch_size)
-                    transitions = list(zip(*transitions))
-                    observes = torch.stack(transitions[0])
-                    acquired = torch.stack(transitions[1])
-                    treatments = torch.stack(transitions[2])
-                    y_fact = torch.stack(transitions[3])
-                    y_hat = self.model.get_y(observes,acquired)
-                    y_fact_hat = torch.where(treatments.bool(),y_hat[:,1],y_hat[:,0])
-                    val_loss = ((y_fact_hat-y_fact.detach())**2).nanmean()
-                    if val_loss < min_mse:
-                        print('epoch:',epoch+1,' train_loss:',loss.item(),' val_loss:',val_loss.item(),' SAVE')
-                        self.model.save(os.path.join(args.save_path,"trained_best.model"))
+                    with torch.no_grad():
+                        transitions = self.val_buffer.buffer
+                        transitions = list(zip(*transitions))
+                        observes = torch.stack(transitions[0]).to(self.device)
+                        acquired = torch.stack(transitions[1]).to(self.device)
+                        treatments = torch.stack(transitions[2]).to(self.device)
+                        y_fact = torch.stack(transitions[3]).to(self.device)
+                        y_cf = torch.stack(transitions[4]).to(self.device)
+                        y_hat = self.model.get_y(observes,acquired)
+                        y_0 = torch.where(treatments.bool(),y_cf,y_fact)
+                        y_1 = torch.where(treatments.bool(),y_fact,y_cf)
+                        val_loss = ((y_hat[:,0]-y_0.detach())**2).nanmean() + ((y_hat[:,1]-y_1.detach())**2).nanmean()
                         file.write("epoch:{},train_loss:{},val_loss:{}\n".format(epoch+1,loss,val_loss))
-                        min_mse = val_loss
+                        if val_loss < min_mse:
+                            print('epoch:',epoch+1,' train_loss:',loss.item(),' val_loss:',val_loss.item(),' SAVE')
+                            self.model.save(os.path.join(args.save_path,"trained_best.model"))
+                            min_mse = val_loss
                     self.model.train()
             train_time = time() - start_time
-            file.write("Finish inf train!time use:{}".format(train_time))
-        self.model.load(os.path.join(args.save_path,"trained_best.model"))
+            file.write("Finish inf train!time use:{}\n".format(train_time))
+        try:
+            self.model.load(os.path.join(args.save_path,"trained_best.model"))
+        except:
+            pass
         return loss
     
     def pretrain(self,trainset,valset,args,epochs=500,batch_size=64,criterion = nn.MSELoss()):
@@ -156,7 +166,7 @@ class Inference(nn.Module):
                     acquired[:,dimension].fill_(1)
             elif mode == 'B':
                 acquired = torch.rand_like(features)
-                acquired = (acquired>args.missing_ratio).float()
+                acquired = (acquired>0).float()
             else:
                 raise Exception
             observe = features*acquired
@@ -177,76 +187,67 @@ class Inference(nn.Module):
                         acquired[:,dimension].fill_(1)
                 elif mode == 'B':
                     acquired = torch.rand_like(features)
-                    acquired = (acquired>args.missing_ratio).float()
+                    acquired = (acquired>0).float()
                 else:
                     raise Exception
                 observe = features*acquired
                 y_hat = self.model.get_y(observe,acquired)
                 y_fact_hat = torch.where(treatments.bool(),y_hat[:,1],y_hat[:,0])
                 val_loss = criterion(y_fact_hat, y_fact.detach())
+                print('epoch:',epoch+1,' train_loss:',loss.item(),' val_loss:' ,val_loss.item())
                 if val_loss < min_val_mse:
-                    print('epoch:',epoch+1,' train_loss:',loss.item(),' val_loss:' ,val_loss.item())
                     self.model.save(os.path.join(args.save_path,"pretrained_best.model"))
                     min_val_mse = val_loss
                 self.model.train()
         # self.model.load(os.path.join(args.save_path,"pretrained_best.model"))
         pretrain_time = time() - pretrain_start
         print('pretrain_time:',pretrain_time)
-        
-    def test(self,dataset,args):
+  
+    def test(self,dataset,args,acquired=None):
+        if acquired != None:
+            assert dataset.features.shape == acquired.shape
         self.model.eval()
         print('start_inference_test')
         start_time = time()
         dataset.index = 0
         mse_tau = torch.empty(0).to(self.device)
         mse_y_fact = torch.empty(0).to(self.device)
+        loss = torch.empty(0).to(self.device)
         sampler = BatchSampler(np.arange(dataset.n_data),128,drop_last=False)
         for indices in sampler:
             features = dataset.features[indices].to(self.device)
             treatments = dataset.treatments[indices].to(self.device)
-            acquired = torch.rand_like(features)
-            acquired = (acquired>args.missing_ratio).float()
+            if acquired == None:
+                acquired_ = torch.rand_like(features)
+                acquired_ = (acquired_>args.missing_ratio).float()
+            else:
+                acquired_ = acquired[indices].to(self.device)
+            observes = features*acquired_
             y_fact = dataset.y_fact[indices].to(self.device)
-            y_hat = self.model.get_y(features,acquired)
+            y_hat = self.model.get_y(observes,acquired_)
             if hasattr(dataset,'y_cf'):
                 y_cf = dataset.y_cf[indices].to(self.device)
+                y_1 = torch.where(treatments.bool(),y_fact,y_cf)
+                y_0 = torch.where(treatments.bool(),y_cf,y_fact)
+                tau = y_1 - y_0
                 tau_hat = y_hat[:,1] - y_hat[:,0]
-                tau = torch.where(treatments.bool(),y_fact-y_cf,y_cf-y_fact)
                 mse_tau = torch.cat([mse_tau,(nn.MSELoss(reduction= 'none')(tau_hat,tau.detach()))])
+                loss = torch.cat([loss,nn.MSELoss(reduction='none')(y_hat[:,1],y_1)+nn.MSELoss(reduction='none')(y_hat[:,0],y_0)])
             y_fact_hat = torch.where(treatments.bool(),y_hat[:,1],y_hat[:,0])
             mse_y_fact = torch.cat([mse_y_fact,(nn.MSELoss(reduction= 'none')(y_fact_hat,y_fact.detach()))])
+        
             
 
         print('finish_inference_test')
         print('time_use:',time()-start_time)
         if hasattr(dataset,'y_cf'):
             print('mse of tau:',mse_tau.nanmean())
+            print('loss:',loss.nanmean())
         print('mse of y_fact:',mse_y_fact.nanmean())
         return mse_tau.nanmean(),mse_y_fact.nanmean() if hasattr(dataset,'y_cf') else mse_y_fact.nanmean()
         
     
-    def train_probpred(self,train_data,epochs):
-        train_dataset = TensorDataset(train_data)
-        train_dataloader = DataLoader(train_dataset, batch_size=128, shuffle=True)
-        optimizer = Adam(self.model.probpred.parameters(), lr=1e-4)
-        test_data = torch.randn([1000,train_data.shape[-1]],device = self.device)
-        
-        for epoch in range(epochs):
-            for batch in train_dataloader:
-                x, = batch  
-                x = x.to(self.device)
-                optimizer.zero_grad()
-                log_prob = self.model.probpred.log_prob(x)
-                loss = -log_prob.mean()
-                loss.backward()
-                optimizer.step()
-            with torch.no_grad():
-                log_prob_q = torch.log(((1/(torch.sqrt(torch.tensor(2*torch.pi))))**(self.n_feature)*torch.exp(-0.5*((test_data)**2).sum(dim=-1))))
-                log_prob_p = self.model.probpred.log_prob(test_data)
-                kl_divergence = (log_prob_q - log_prob_p).mean()  # 计算 KL 散度的近似值
 
-            print(f'Test KL Divergence Approximation: {kl_divergence.item():.4f}')
-            print(f'Epoch {epoch+1}/{epochs}, train_Loss: {loss.item():.4f}')
     
                 
     

@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
+from torch.utils.data import WeightedRandomSampler, BatchSampler, DataLoader, TensorDataset
 
 def data_split_n_ready(features, treatments, y_fact, y_cf=None, mu=None,random_seed=123,val_test_split=np.array([0.25, 0.25]),shuffle=True):
     val_test_split = np.array(val_test_split)
@@ -150,7 +151,18 @@ class Simu_Dataset(BaseDataset):
         else:
             return features, treatments, y_fact, y_cf
         
-        
+    def pred_ycf(self,model,batchsize = 128):
+        dataset = TensorDataset(self.features,self.treatments)
+        data_loader = DataLoader(dataset, batch_size=batchsize,drop_last=False)
+        if not hasattr(self,'y_cf'):
+            self.y_cf = torch.empty(0)
+            with torch.no_grad():
+                for feature,treatment in data_loader:
+                    feature = feature.to(model.device)
+                    treatment = treatment.to(model.device)
+                    y = model.get_y(feature,torch.ones_like(feature))
+                    y_cf = torch.where(treatment.bool(),y[:,0],y[:,1])
+                    self.y_cf = torch.cat([self.y_cf,y_cf.to(self.y_cf.device)],dim=-1)
         
     
         

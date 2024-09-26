@@ -1,0 +1,1173 @@
+random_seed: 22
+model: simple
+dataset: simu_data
+sigma: 0.3
+dist: 4.0
+inf_lr: 0.003
+agent_lr: 0.001
+val_test_split: [0.1, 0.1]
+n_feature: 25
+disable_cuda: False
+pretrain: 10000
+decay: 0.9
+alpha: 1.0
+gamma: 1.0
+inf_nepoch: 100
+agent_nepoch: 500
+data_type: dpeak_dependent_complex2
+inf_hidden_sizes: [512, 512]
+policy_hidden_sizes: [256, 256]
+target_update_freq: 50
+eps_start: 1.0
+eps_end: 0.1
+n_env: 32
+r_cost: 1.0
+batch_size: 512
+buffer_size: 5000
+device: cuda
+save_dir: /data/tianeq/testpro/result
+save_path: /data/tianeq/testpro/result/simu_data_dpeak_dependent_complex2_dist4.0
+data_path: /data/tianeq/testpro/dataset
+X_mode: dpeak
+T_mode: dependent
+Y_mode: complex2
+current eps:0.9
+exp_gen start:
+exp_gen finish!time use:59.073466300964355
+start inf train:
+epoch:0,val_loss:677.33349609375
+epoch:10,train_loss:707.3200073242188,val_loss:804.2667846679688
+epoch:20,train_loss:665.8452758789062,val_loss:749.52685546875
+epoch:30,train_loss:639.7969970703125,val_loss:697.6522216796875
+epoch:40,train_loss:622.4805297851562,val_loss:691.1663208007812
+epoch:50,train_loss:497.04693603515625,val_loss:708.2739868164062
+epoch:60,train_loss:550.228271484375,val_loss:685.9689331054688
+epoch:70,train_loss:457.0587158203125,val_loss:702.330078125
+epoch:80,train_loss:517.307373046875,val_loss:765.2415771484375
+epoch:90,train_loss:538.6456298828125,val_loss:742.7312622070312
+epoch:100,train_loss:390.67083740234375,val_loss:759.350341796875
+Finish inf train!time use:4.133969068527222
+test finish!
+mean_mse:890.4005126953125
+mean_n_feature:12.184000015258789
+current eps:0.9
+exp_gen start:
+exp_gen finish!time use:58.3830132484436
+start agent train:
+epoch:0,agent_score:180.4667510986328
+epoch:50,agent_loss:137739.8125,agent_score:881.8788452148438
+epoch:100,agent_loss:156806.484375,agent_score:805.9891357421875
+epoch:150,agent_loss:148146.296875,agent_score:542.6168823242188
+epoch:200,agent_loss:151695.28125,agent_score:807.3444213867188
+epoch:250,agent_loss:139502.34375,agent_score:0.0
+epoch:300,agent_loss:141369.015625,agent_score:918.303955078125
+epoch:350,agent_loss:165019.78125,agent_score:922.822509765625
+epoch:400,agent_loss:175492.8125,agent_score:835.8466796875
+epoch:450,agent_loss:131066.296875,agent_score:657.1981811523438
+epoch:500,agent_loss:136427.46875,agent_score:846.6021728515625
+Finish agent train!time use;285.53780698776245
+test finish!
+mean_mse:236.49166870117188
+mean_n_feature:11.239999771118164
+current eps:0.81
+exp_gen start:
+exp_gen finish!time use:64.32474160194397
+start inf train:
+epoch:0,val_loss:581.586669921875
+epoch:10,train_loss:460.53546142578125,val_loss:528.1082763671875
+epoch:20,train_loss:364.95135498046875,val_loss:546.0880126953125
+epoch:30,train_loss:404.28936767578125,val_loss:532.29443359375
+epoch:40,train_loss:360.78497314453125,val_loss:519.3917846679688
+epoch:50,train_loss:463.17352294921875,val_loss:577.3905029296875
+epoch:60,train_loss:404.167236328125,val_loss:583.4791259765625
+epoch:70,train_loss:386.83648681640625,val_loss:565.0194091796875
+epoch:80,train_loss:292.110107421875,val_loss:538.7163696289062
+epoch:90,train_loss:325.3726806640625,val_loss:578.342529296875
+epoch:100,train_loss:407.4503173828125,val_loss:585.0791015625
+Finish inf train!time use:5.110419511795044
+test finish!
+mean_mse:102.82235717773438
+mean_n_feature:11.239999771118164
+current eps:0.81
+exp_gen start:
+exp_gen finish!time use:73.66376852989197
+start agent train:
+epoch:0,agent_score:962.3527221679688
+epoch:50,agent_loss:122135.8203125,agent_score:961.3837890625
+epoch:100,agent_loss:112025.4921875,agent_score:947.9374389648438
+epoch:150,agent_loss:106863.7734375,agent_score:948.3089599609375
+epoch:200,agent_loss:100710.6640625,agent_score:948.2218627929688
+epoch:250,agent_loss:104554.5,agent_score:946.943115234375
+epoch:300,agent_loss:122410.5390625,agent_score:946.942626953125
+epoch:350,agent_loss:122427.21875,agent_score:946.9892578125
+epoch:400,agent_loss:108990.1015625,agent_score:946.9126586914062
+epoch:450,agent_loss:102146.8359375,agent_score:946.9127807617188
+epoch:500,agent_loss:110248.4453125,agent_score:946.9129028320312
+Finish agent train!time use;303.56970047950745
+test finish!
+mean_mse:91.41699981689453
+mean_n_feature:25.0
+current eps:0.7290000000000001
+exp_gen start:
+exp_gen finish!time use:71.45549941062927
+start inf train:
+epoch:0,val_loss:463.8127136230469
+epoch:10,train_loss:388.6351318359375,val_loss:455.5547790527344
+epoch:20,train_loss:320.6291809082031,val_loss:454.9830017089844
+epoch:30,train_loss:332.252197265625,val_loss:458.80963134765625
+epoch:40,train_loss:288.62542724609375,val_loss:465.4979553222656
+epoch:50,train_loss:239.88229370117188,val_loss:451.8472900390625
+epoch:60,train_loss:292.0604248046875,val_loss:487.01605224609375
+epoch:70,train_loss:234.07969665527344,val_loss:467.03472900390625
+epoch:80,train_loss:194.48043823242188,val_loss:477.5235595703125
+epoch:90,train_loss:216.7955322265625,val_loss:459.56298828125
+epoch:100,train_loss:215.187744140625,val_loss:457.72491455078125
+Finish inf train!time use:3.7038145065307617
+test finish!
+mean_mse:68.3023452758789
+mean_n_feature:25.0
+current eps:0.7290000000000001
+exp_gen start:
+exp_gen finish!time use:68.61163187026978
+start agent train:
+epoch:0,agent_score:966.4055786132812
+epoch:50,agent_loss:202262.578125,agent_score:966.4053344726562
+epoch:100,agent_loss:205182.90625,agent_score:966.4058837890625
+epoch:150,agent_loss:201935.703125,agent_score:966.405517578125
+epoch:200,agent_loss:219963.171875,agent_score:966.4049682617188
+epoch:250,agent_loss:203068.3125,agent_score:966.4049682617188
+epoch:300,agent_loss:191700.796875,agent_score:966.4052124023438
+epoch:350,agent_loss:206748.671875,agent_score:966.4052124023438
+epoch:400,agent_loss:196237.046875,agent_score:966.4047241210938
+epoch:450,agent_loss:202385.03125,agent_score:966.4049072265625
+epoch:500,agent_loss:197470.84375,agent_score:966.4053344726562
+Finish agent train!time use;334.0292880535126
+test finish!
+mean_mse:68.3023452758789
+mean_n_feature:25.0
+current eps:0.6561000000000001
+exp_gen start:
+exp_gen finish!time use:61.01100730895996
+start inf train:
+epoch:0,val_loss:376.62640380859375
+epoch:10,train_loss:385.7364501953125,val_loss:374.2041320800781
+epoch:20,train_loss:348.85113525390625,val_loss:376.4975891113281
+epoch:30,train_loss:218.18740844726562,val_loss:372.92181396484375
+epoch:40,train_loss:223.06459045410156,val_loss:366.1648254394531
+epoch:50,train_loss:221.83114624023438,val_loss:369.7501220703125
+epoch:60,train_loss:231.2975616455078,val_loss:372.12335205078125
+epoch:70,train_loss:210.36573791503906,val_loss:369.49700927734375
+epoch:80,train_loss:209.46185302734375,val_loss:374.0174255371094
+epoch:90,train_loss:233.25662231445312,val_loss:370.17108154296875
+epoch:100,train_loss:189.29153442382812,val_loss:376.97833251953125
+Finish inf train!time use:3.270573139190674
+test finish!
+mean_mse:48.01152420043945
+mean_n_feature:25.0
+current eps:0.6561000000000001
+exp_gen start:
+exp_gen finish!time use:51.97029256820679
+start agent train:
+epoch:0,agent_score:986.0379638671875
+epoch:50,agent_loss:114090.03125,agent_score:986.0377807617188
+epoch:100,agent_loss:107692.828125,agent_score:986.0376586914062
+epoch:150,agent_loss:111023.8671875,agent_score:986.0381469726562
+epoch:200,agent_loss:104555.375,agent_score:986.0384521484375
+epoch:250,agent_loss:120776.8984375,agent_score:986.038330078125
+epoch:300,agent_loss:118757.90625,agent_score:986.0379638671875
+epoch:350,agent_loss:115148.8125,agent_score:986.0377197265625
+epoch:400,agent_loss:116786.90625,agent_score:986.037841796875
+epoch:450,agent_loss:95836.1015625,agent_score:986.0377807617188
+epoch:500,agent_loss:106449.984375,agent_score:986.0386962890625
+Finish agent train!time use;342.9282684326172
+test finish!
+mean_mse:48.01152420043945
+mean_n_feature:25.0
+current eps:0.5904900000000002
+exp_gen start:
+exp_gen finish!time use:55.48338055610657
+start inf train:
+epoch:0,val_loss:302.1080017089844
+epoch:10,train_loss:165.9219207763672,val_loss:297.5347900390625
+epoch:20,train_loss:255.23716735839844,val_loss:305.6044921875
+epoch:30,train_loss:228.06597900390625,val_loss:300.11761474609375
+epoch:40,train_loss:150.4871826171875,val_loss:318.50091552734375
+epoch:50,train_loss:147.20489501953125,val_loss:302.33514404296875
+epoch:60,train_loss:197.21926879882812,val_loss:303.20703125
+epoch:70,train_loss:125.79237365722656,val_loss:312.56036376953125
+epoch:80,train_loss:181.81741333007812,val_loss:316.3539733886719
+epoch:90,train_loss:144.70834350585938,val_loss:334.3441467285156
+epoch:100,train_loss:154.821533203125,val_loss:330.12799072265625
+Finish inf train!time use:1.5683422088623047
+test finish!
+mean_mse:47.00556945800781
+mean_n_feature:25.0
+current eps:0.5904900000000002
+exp_gen start:
+exp_gen finish!time use:30.201075792312622
+start agent train:
+epoch:0,agent_score:990.8723754882812
+epoch:50,agent_loss:148651.234375,agent_score:990.872314453125
+epoch:100,agent_loss:157661.484375,agent_score:990.8726806640625
+epoch:150,agent_loss:156243.21875,agent_score:990.8726196289062
+epoch:200,agent_loss:161571.078125,agent_score:990.8726806640625
+epoch:250,agent_loss:159294.609375,agent_score:990.8724975585938
+epoch:300,agent_loss:144909.21875,agent_score:990.8724975585938
+epoch:350,agent_loss:151741.984375,agent_score:990.8724365234375
+epoch:400,agent_loss:158555.390625,agent_score:990.8734130859375
+epoch:450,agent_loss:147804.015625,agent_score:990.8736572265625
+epoch:500,agent_loss:147488.765625,agent_score:990.8731079101562
+Finish agent train!time use;361.51001262664795
+test finish!
+mean_mse:47.00556945800781
+mean_n_feature:25.0
+current eps:0.5314410000000002
+exp_gen start:
+exp_gen finish!time use:53.59528732299805
+start inf train:
+epoch:0,val_loss:232.79177856445312
+epoch:10,train_loss:188.15167236328125,val_loss:223.1314697265625
+epoch:20,train_loss:226.9771270751953,val_loss:227.95123291015625
+epoch:30,train_loss:183.92941284179688,val_loss:225.87258911132812
+epoch:40,train_loss:185.204833984375,val_loss:241.31320190429688
+epoch:50,train_loss:199.29763793945312,val_loss:221.91314697265625
+epoch:60,train_loss:164.91453552246094,val_loss:224.42111206054688
+epoch:70,train_loss:124.19603729248047,val_loss:228.28024291992188
+epoch:80,train_loss:161.69338989257812,val_loss:248.93435668945312
+epoch:90,train_loss:150.51358032226562,val_loss:229.18704223632812
+epoch:100,train_loss:158.3877716064453,val_loss:238.87115478515625
+Finish inf train!time use:4.218705892562866
+test finish!
+mean_mse:34.38898849487305
+mean_n_feature:25.0
+current eps:0.5314410000000002
+exp_gen start:
+exp_gen finish!time use:55.766210317611694
+start agent train:
+epoch:0,agent_score:1002.24755859375
+epoch:50,agent_loss:129901.84375,agent_score:1002.2474365234375
+epoch:100,agent_loss:114625.8671875,agent_score:1002.2474975585938
+epoch:150,agent_loss:112715.6953125,agent_score:1002.2476196289062
+epoch:200,agent_loss:129244.6796875,agent_score:1002.2478637695312
+epoch:250,agent_loss:102518.078125,agent_score:1002.248779296875
+epoch:300,agent_loss:126915.0625,agent_score:1002.2481079101562
+epoch:350,agent_loss:110593.6875,agent_score:1002.2478637695312
+epoch:400,agent_loss:117236.265625,agent_score:1002.2477416992188
+epoch:450,agent_loss:110815.171875,agent_score:1002.2481079101562
+epoch:500,agent_loss:119081.109375,agent_score:1002.2481689453125
+Finish agent train!time use;310.18305468559265
+test finish!
+mean_mse:34.38898849487305
+mean_n_feature:25.0
+current eps:0.47829690000000014
+exp_gen start:
+exp_gen finish!time use:50.160593032836914
+start inf train:
+epoch:0,val_loss:182.9322967529297
+epoch:10,train_loss:185.99957275390625,val_loss:197.8702850341797
+epoch:20,train_loss:124.78471374511719,val_loss:169.3138427734375
+epoch:30,train_loss:116.1546630859375,val_loss:175.24278259277344
+epoch:40,train_loss:139.9521484375,val_loss:166.0794677734375
+epoch:50,train_loss:174.64096069335938,val_loss:171.74371337890625
+epoch:60,train_loss:172.19680786132812,val_loss:204.59918212890625
+epoch:70,train_loss:158.40423583984375,val_loss:186.40365600585938
+epoch:80,train_loss:122.48052978515625,val_loss:177.37002563476562
+epoch:90,train_loss:95.7899169921875,val_loss:191.12623596191406
+epoch:100,train_loss:123.9360580444336,val_loss:199.53602600097656
+Finish inf train!time use:3.9355552196502686
+test finish!
+mean_mse:31.82748031616211
+mean_n_feature:25.0
+current eps:0.47829690000000014
+exp_gen start:
+exp_gen finish!time use:55.23964500427246
+start agent train:
+epoch:0,agent_score:1004.92236328125
+epoch:50,agent_loss:192567.890625,agent_score:1004.9227905273438
+epoch:100,agent_loss:170617.171875,agent_score:1004.921875
+epoch:150,agent_loss:173673.046875,agent_score:1004.9225463867188
+epoch:200,agent_loss:183150.546875,agent_score:1004.922607421875
+epoch:250,agent_loss:185529.140625,agent_score:1004.9227294921875
+epoch:300,agent_loss:177080.453125,agent_score:1004.9221801757812
+epoch:350,agent_loss:188686.765625,agent_score:1004.9225463867188
+epoch:400,agent_loss:185033.65625,agent_score:1004.9224243164062
+epoch:450,agent_loss:177681.390625,agent_score:1004.9226684570312
+epoch:500,agent_loss:188980.609375,agent_score:1004.9227294921875
+Finish agent train!time use;385.2323303222656
+test finish!
+mean_mse:31.82748031616211
+mean_n_feature:25.0
+current eps:0.43046721000000016
+exp_gen start:
+exp_gen finish!time use:56.468403577804565
+start inf train:
+epoch:0,val_loss:184.50758361816406
+epoch:10,train_loss:111.58560180664062,val_loss:185.8128662109375
+epoch:20,train_loss:154.7477569580078,val_loss:184.50286865234375
+epoch:30,train_loss:137.97476196289062,val_loss:182.13577270507812
+epoch:40,train_loss:117.9744644165039,val_loss:184.4139862060547
+epoch:50,train_loss:181.5373077392578,val_loss:185.9400634765625
+epoch:60,train_loss:117.9865493774414,val_loss:187.74688720703125
+epoch:70,train_loss:157.2074432373047,val_loss:189.98599243164062
+epoch:80,train_loss:120.93853759765625,val_loss:187.57553100585938
+epoch:90,train_loss:176.59326171875,val_loss:195.92935180664062
+epoch:100,train_loss:105.06917572021484,val_loss:192.4394073486328
+Finish inf train!time use:4.021526336669922
+test finish!
+mean_mse:27.024808883666992
+mean_n_feature:25.0
+current eps:0.43046721000000016
+exp_gen start:
+exp_gen finish!time use:57.106268644332886
+start agent train:
+epoch:0,agent_score:1010.7876586914062
+epoch:50,agent_loss:77403.515625,agent_score:1010.7880859375
+epoch:100,agent_loss:79062.5859375,agent_score:1010.7881469726562
+epoch:150,agent_loss:83939.25,agent_score:1010.7881469726562
+epoch:200,agent_loss:79175.90625,agent_score:1010.7887573242188
+epoch:250,agent_loss:77417.7265625,agent_score:1010.7879028320312
+epoch:300,agent_loss:82522.8359375,agent_score:1010.788818359375
+epoch:350,agent_loss:79511.953125,agent_score:1010.7881469726562
+epoch:400,agent_loss:72954.90625,agent_score:1010.7891235351562
+epoch:450,agent_loss:80214.8515625,agent_score:1010.7881469726562
+epoch:500,agent_loss:81126.8046875,agent_score:1010.7887573242188
+Finish agent train!time use;385.23883152008057
+test finish!
+mean_mse:27.024808883666992
+mean_n_feature:25.0
+current eps:0.38742048900000015
+exp_gen start:
+exp_gen finish!time use:50.70941424369812
+start inf train:
+epoch:0,val_loss:204.75918579101562
+epoch:10,train_loss:84.56906127929688,val_loss:208.18020629882812
+epoch:20,train_loss:97.10405731201172,val_loss:216.2875213623047
+epoch:30,train_loss:91.91259765625,val_loss:215.6486053466797
+epoch:40,train_loss:95.39743041992188,val_loss:232.65133666992188
+epoch:50,train_loss:85.05650329589844,val_loss:217.74264526367188
+epoch:60,train_loss:64.80450439453125,val_loss:221.4329833984375
+epoch:70,train_loss:62.854949951171875,val_loss:228.86788940429688
+epoch:80,train_loss:91.38612365722656,val_loss:223.26181030273438
+epoch:90,train_loss:67.8619384765625,val_loss:235.59164428710938
+epoch:100,train_loss:55.37776184082031,val_loss:231.6190185546875
+Finish inf train!time use:4.150587320327759
+test finish!
+mean_mse:27.024808883666992
+mean_n_feature:25.0
+current eps:0.38742048900000015
+exp_gen start:
+exp_gen finish!time use:56.08819651603699
+start agent train:
+epoch:0,agent_score:1010.7887573242188
+epoch:50,agent_loss:144364.703125,agent_score:1010.788818359375
+epoch:100,agent_loss:136302.234375,agent_score:1010.788818359375
+epoch:150,agent_loss:133944.5625,agent_score:1010.78857421875
+epoch:200,agent_loss:140558.421875,agent_score:1010.7881469726562
+epoch:250,agent_loss:139314.765625,agent_score:1010.787841796875
+epoch:300,agent_loss:138351.125,agent_score:1010.7886962890625
+epoch:350,agent_loss:145088.703125,agent_score:1010.78857421875
+epoch:400,agent_loss:142479.8125,agent_score:1010.7884521484375
+epoch:450,agent_loss:143477.640625,agent_score:1010.7880859375
+epoch:500,agent_loss:137268.15625,agent_score:1010.7880859375
+Finish agent train!time use;400.74517583847046
+test finish!
+mean_mse:27.024808883666992
+mean_n_feature:25.0
+current eps:0.34867844010000015
+exp_gen start:
+exp_gen finish!time use:58.49049353599548
+start inf train:
+epoch:0,val_loss:119.23480224609375
+epoch:10,train_loss:132.4595489501953,val_loss:114.53903198242188
+epoch:20,train_loss:118.781982421875,val_loss:117.17927551269531
+epoch:30,train_loss:91.21476745605469,val_loss:118.69416809082031
+epoch:40,train_loss:100.97999572753906,val_loss:115.83721923828125
+epoch:50,train_loss:116.66132354736328,val_loss:119.69598388671875
+epoch:60,train_loss:60.50274658203125,val_loss:117.66893005371094
+epoch:70,train_loss:68.95307159423828,val_loss:117.37462615966797
+epoch:80,train_loss:85.8735580444336,val_loss:115.7336196899414
+epoch:90,train_loss:100.16192626953125,val_loss:119.86871337890625
+epoch:100,train_loss:90.97260284423828,val_loss:121.51561737060547
+Finish inf train!time use:1.8833107948303223
+test finish!
+mean_mse:25.724933624267578
+mean_n_feature:25.0
+current eps:0.34867844010000015
+exp_gen start:
+exp_gen finish!time use:52.07624816894531
+start agent train:
+epoch:0,agent_score:1013.3353271484375
+epoch:50,agent_loss:73229.8046875,agent_score:1013.3355712890625
+epoch:100,agent_loss:72343.5390625,agent_score:1013.3349609375
+epoch:150,agent_loss:73346.75,agent_score:1013.3353881835938
+epoch:200,agent_loss:79301.140625,agent_score:1013.3353271484375
+epoch:250,agent_loss:75376.3046875,agent_score:1013.3350830078125
+epoch:300,agent_loss:73450.4140625,agent_score:1013.3356323242188
+epoch:350,agent_loss:71928.1328125,agent_score:1013.33544921875
+epoch:400,agent_loss:69635.8203125,agent_score:1013.3356323242188
+epoch:450,agent_loss:74362.78125,agent_score:1013.3349609375
+epoch:500,agent_loss:73197.75,agent_score:1013.3359985351562
+Finish agent train!time use;423.9230239391327
+test finish!
+mean_mse:25.724933624267578
+mean_n_feature:25.0
+current eps:0.31381059609000017
+exp_gen start:
+exp_gen finish!time use:73.18451189994812
+start inf train:
+epoch:0,val_loss:110.2979736328125
+epoch:10,train_loss:77.80708312988281,val_loss:101.9330062866211
+epoch:20,train_loss:82.25579833984375,val_loss:101.41203308105469
+epoch:30,train_loss:73.38582611083984,val_loss:101.38774871826172
+epoch:40,train_loss:51.59215545654297,val_loss:103.51353454589844
+epoch:50,train_loss:69.09197235107422,val_loss:99.97503662109375
+epoch:60,train_loss:98.50650024414062,val_loss:99.2774658203125
+epoch:70,train_loss:77.4468002319336,val_loss:102.84854125976562
+epoch:80,train_loss:87.04252624511719,val_loss:106.47325134277344
+epoch:90,train_loss:66.86844635009766,val_loss:98.62380981445312
+epoch:100,train_loss:65.22948455810547,val_loss:103.90484619140625
+Finish inf train!time use:4.530861854553223
+test finish!
+mean_mse:22.85978889465332
+mean_n_feature:25.0
+current eps:0.31381059609000017
+exp_gen start:
+exp_gen finish!time use:69.5634069442749
+start agent train:
+epoch:0,agent_score:1017.0161743164062
+epoch:50,agent_loss:175359.75,agent_score:1017.0165405273438
+epoch:100,agent_loss:182706.3125,agent_score:1017.017333984375
+epoch:150,agent_loss:168278.09375,agent_score:1017.0162963867188
+epoch:200,agent_loss:168360.671875,agent_score:1017.016357421875
+epoch:250,agent_loss:172724.453125,agent_score:1017.0162353515625
+epoch:300,agent_loss:168970.234375,agent_score:1017.0159912109375
+epoch:350,agent_loss:174209.21875,agent_score:1017.015869140625
+epoch:400,agent_loss:183599.21875,agent_score:1017.0158081054688
+epoch:450,agent_loss:169362.6875,agent_score:1017.015869140625
+epoch:500,agent_loss:168785.96875,agent_score:1017.015625
+Finish agent train!time use;426.80200815200806
+test finish!
+mean_mse:22.85978889465332
+mean_n_feature:25.0
+current eps:0.28242953648100017
+exp_gen start:
+exp_gen finish!time use:68.86524629592896
+start inf train:
+epoch:0,val_loss:115.58243560791016
+epoch:10,train_loss:63.423858642578125,val_loss:116.96023559570312
+epoch:20,train_loss:52.31409454345703,val_loss:114.42039489746094
+epoch:30,train_loss:81.30912780761719,val_loss:114.08035278320312
+epoch:40,train_loss:75.11673736572266,val_loss:114.35617065429688
+epoch:50,train_loss:68.85200500488281,val_loss:113.86663818359375
+epoch:60,train_loss:73.82778930664062,val_loss:113.50494384765625
+epoch:70,train_loss:68.20437622070312,val_loss:113.79347229003906
+epoch:80,train_loss:77.709228515625,val_loss:113.86101531982422
+epoch:90,train_loss:75.13264465332031,val_loss:114.45278930664062
+epoch:100,train_loss:87.58184814453125,val_loss:114.92347717285156
+Finish inf train!time use:5.393303394317627
+test finish!
+mean_mse:22.010820388793945
+mean_n_feature:25.0
+current eps:0.28242953648100017
+exp_gen start:
+exp_gen finish!time use:60.13375163078308
+start agent train:
+epoch:0,agent_score:1015.119140625
+epoch:50,agent_loss:75193.046875,agent_score:1015.1192626953125
+epoch:100,agent_loss:79511.9453125,agent_score:1015.11962890625
+epoch:150,agent_loss:78421.15625,agent_score:1015.1190185546875
+epoch:200,agent_loss:76037.3046875,agent_score:1015.118896484375
+epoch:250,agent_loss:82688.03125,agent_score:1015.1189575195312
+epoch:300,agent_loss:76533.9921875,agent_score:1015.1199951171875
+epoch:350,agent_loss:75749.453125,agent_score:1015.1189575195312
+epoch:400,agent_loss:81807.390625,agent_score:1015.11865234375
+epoch:450,agent_loss:76758.9921875,agent_score:1015.1182250976562
+epoch:500,agent_loss:83099.625,agent_score:1015.1192626953125
+Finish agent train!time use;430.8067524433136
+test finish!
+mean_mse:22.010820388793945
+mean_n_feature:25.0
+current eps:0.25418658283290013
+exp_gen start:
+exp_gen finish!time use:62.54561948776245
+start inf train:
+epoch:0,val_loss:84.04232025146484
+epoch:10,train_loss:70.25695037841797,val_loss:88.42069244384766
+epoch:20,train_loss:72.1702880859375,val_loss:92.9581298828125
+epoch:30,train_loss:83.9378662109375,val_loss:88.38740539550781
+epoch:40,train_loss:78.20173645019531,val_loss:92.06271362304688
+epoch:50,train_loss:72.36141204833984,val_loss:85.68965148925781
+epoch:60,train_loss:61.63996887207031,val_loss:85.0019760131836
+epoch:70,train_loss:63.004756927490234,val_loss:94.10893249511719
+epoch:80,train_loss:49.8485107421875,val_loss:83.72003173828125
+epoch:90,train_loss:50.234107971191406,val_loss:84.16891479492188
+epoch:100,train_loss:42.39091110229492,val_loss:86.57025146484375
+Finish inf train!time use:4.660903692245483
+test finish!
+mean_mse:23.981834411621094
+mean_n_feature:25.0
+current eps:0.25418658283290013
+exp_gen start:
+exp_gen finish!time use:61.76311469078064
+start agent train:
+epoch:0,agent_score:1012.625244140625
+epoch:50,agent_loss:93311.125,agent_score:1012.626220703125
+epoch:100,agent_loss:105703.3203125,agent_score:1012.62451171875
+epoch:150,agent_loss:96553.859375,agent_score:1012.6251220703125
+epoch:200,agent_loss:97041.7421875,agent_score:1012.6253662109375
+epoch:250,agent_loss:106331.1796875,agent_score:1012.625732421875
+epoch:300,agent_loss:94993.9296875,agent_score:1012.6251831054688
+epoch:350,agent_loss:102150.0078125,agent_score:1012.6251220703125
+epoch:400,agent_loss:98286.625,agent_score:1012.6248168945312
+epoch:450,agent_loss:95778.140625,agent_score:1012.6251220703125
+epoch:500,agent_loss:104589.6640625,agent_score:1012.6251220703125
+Finish agent train!time use;440.97788071632385
+test finish!
+mean_mse:23.981834411621094
+mean_n_feature:25.0
+current eps:0.22876792454961012
+exp_gen start:
+exp_gen finish!time use:58.06974506378174
+start inf train:
+epoch:0,val_loss:94.10932922363281
+epoch:10,train_loss:40.190670013427734,val_loss:94.25358581542969
+epoch:20,train_loss:42.54393005371094,val_loss:95.08634948730469
+epoch:30,train_loss:48.22972106933594,val_loss:91.55046844482422
+epoch:40,train_loss:35.159263610839844,val_loss:91.79513549804688
+epoch:50,train_loss:33.31252670288086,val_loss:93.252197265625
+epoch:60,train_loss:17.819847106933594,val_loss:93.83331298828125
+epoch:70,train_loss:30.158306121826172,val_loss:97.07069396972656
+epoch:80,train_loss:28.363161087036133,val_loss:98.20954132080078
+epoch:90,train_loss:34.527225494384766,val_loss:95.90351867675781
+epoch:100,train_loss:48.43189239501953,val_loss:99.29016876220703
+Finish inf train!time use:5.399005174636841
+test finish!
+mean_mse:19.774744033813477
+mean_n_feature:25.0
+current eps:0.22876792454961012
+exp_gen start:
+exp_gen finish!time use:68.24602556228638
+start agent train:
+epoch:0,agent_score:1019.0203857421875
+epoch:50,agent_loss:125670.65625,agent_score:1019.0198974609375
+epoch:100,agent_loss:120936.640625,agent_score:1019.0204467773438
+epoch:150,agent_loss:130661.8203125,agent_score:1019.0199584960938
+epoch:200,agent_loss:132742.75,agent_score:1019.020751953125
+epoch:250,agent_loss:115576.5625,agent_score:1019.020263671875
+epoch:300,agent_loss:129327.2890625,agent_score:1019.0200805664062
+epoch:350,agent_loss:137690.953125,agent_score:1019.0205688476562
+epoch:400,agent_loss:116626.9375,agent_score:1019.0203857421875
+epoch:450,agent_loss:132031.296875,agent_score:1019.0206909179688
+epoch:500,agent_loss:131185.03125,agent_score:1019.020263671875
+Finish agent train!time use;449.28698658943176
+test finish!
+mean_mse:19.774744033813477
+mean_n_feature:25.0
+current eps:0.2058911320946491
+exp_gen start:
+exp_gen finish!time use:72.52232885360718
+start inf train:
+epoch:0,val_loss:81.44676971435547
+epoch:10,train_loss:44.32496643066406,val_loss:80.02947998046875
+epoch:20,train_loss:46.54645538330078,val_loss:79.65099334716797
+epoch:30,train_loss:32.59104919433594,val_loss:79.76559448242188
+epoch:40,train_loss:38.75120544433594,val_loss:80.53472900390625
+epoch:50,train_loss:47.41698455810547,val_loss:80.63216400146484
+epoch:60,train_loss:24.715295791625977,val_loss:79.0036849975586
+epoch:70,train_loss:40.502899169921875,val_loss:78.8106689453125
+epoch:80,train_loss:16.69937515258789,val_loss:78.59016418457031
+epoch:90,train_loss:30.199031829833984,val_loss:83.33027648925781
+epoch:100,train_loss:25.388275146484375,val_loss:77.46763610839844
+Finish inf train!time use:5.730762958526611
+test finish!
+mean_mse:19.272735595703125
+mean_n_feature:25.0
+current eps:0.2058911320946491
+exp_gen start:
+exp_gen finish!time use:68.4640302658081
+start agent train:
+epoch:0,agent_score:1019.7192993164062
+epoch:50,agent_loss:132717.234375,agent_score:1019.719482421875
+epoch:100,agent_loss:140184.734375,agent_score:1019.7194213867188
+epoch:150,agent_loss:130407.4375,agent_score:1019.7201538085938
+epoch:200,agent_loss:132413.640625,agent_score:1019.7191772460938
+epoch:250,agent_loss:130900.9296875,agent_score:1019.719482421875
+epoch:300,agent_loss:141279.59375,agent_score:1019.7201538085938
+epoch:350,agent_loss:141975.484375,agent_score:1019.7200317382812
+epoch:400,agent_loss:140396.671875,agent_score:1019.719970703125
+epoch:450,agent_loss:134683.90625,agent_score:1019.7197875976562
+epoch:500,agent_loss:143931.390625,agent_score:1019.7200317382812
+Finish agent train!time use;534.1659300327301
+test finish!
+mean_mse:19.272735595703125
+mean_n_feature:25.0
+current eps:0.1853020188851842
+exp_gen start:
+exp_gen finish!time use:101.3398790359497
+start inf train:
+epoch:0,val_loss:70.70240783691406
+epoch:10,train_loss:28.40485954284668,val_loss:68.90811157226562
+epoch:20,train_loss:49.72119140625,val_loss:73.26815795898438
+epoch:30,train_loss:66.54412841796875,val_loss:70.45694732666016
+epoch:40,train_loss:45.82478332519531,val_loss:68.22134399414062
+epoch:50,train_loss:34.55145263671875,val_loss:68.60084533691406
+epoch:60,train_loss:34.8155632019043,val_loss:72.50524139404297
+epoch:70,train_loss:30.87465476989746,val_loss:69.30496978759766
+epoch:80,train_loss:30.971954345703125,val_loss:70.64667510986328
+epoch:90,train_loss:33.30145263671875,val_loss:71.41394805908203
+epoch:100,train_loss:46.30121994018555,val_loss:75.19517517089844
+Finish inf train!time use:6.383559942245483
+test finish!
+mean_mse:21.71002197265625
+mean_n_feature:25.0
+current eps:0.1853020188851842
+exp_gen start:
+exp_gen finish!time use:101.38840246200562
+start agent train:
+epoch:0,agent_score:1019.6459350585938
+epoch:50,agent_loss:72954.1015625,agent_score:1019.6453247070312
+epoch:100,agent_loss:75610.40625,agent_score:1019.6448974609375
+epoch:150,agent_loss:73733.6015625,agent_score:1019.6455078125
+epoch:200,agent_loss:74465.1953125,agent_score:1019.6455078125
+epoch:250,agent_loss:70252.6953125,agent_score:1019.6456298828125
+epoch:300,agent_loss:71649.203125,agent_score:1019.6445922851562
+epoch:350,agent_loss:73270.0,agent_score:1019.6447143554688
+epoch:400,agent_loss:74591.625,agent_score:1019.6448364257812
+epoch:450,agent_loss:72256.96875,agent_score:1019.6453247070312
+epoch:500,agent_loss:75892.5078125,agent_score:1019.644775390625
+Finish agent train!time use;560.2032940387726
+test finish!
+mean_mse:21.71002197265625
+mean_n_feature:25.0
+current eps:0.16677181699666577
+exp_gen start:
+exp_gen finish!time use:88.83650231361389
+start inf train:
+epoch:0,val_loss:76.6748275756836
+epoch:10,train_loss:54.51279830932617,val_loss:78.83847045898438
+epoch:20,train_loss:26.48281478881836,val_loss:74.22821044921875
+epoch:30,train_loss:27.209381103515625,val_loss:75.15909576416016
+epoch:40,train_loss:45.951683044433594,val_loss:78.68092346191406
+epoch:50,train_loss:46.96206283569336,val_loss:78.55135345458984
+epoch:60,train_loss:40.62236022949219,val_loss:76.64863586425781
+epoch:70,train_loss:38.077239990234375,val_loss:77.44719696044922
+epoch:80,train_loss:60.709774017333984,val_loss:77.17806243896484
+epoch:90,train_loss:38.55167770385742,val_loss:81.19766235351562
+epoch:100,train_loss:30.126474380493164,val_loss:82.50142669677734
+Finish inf train!time use:5.517819881439209
+test finish!
+mean_mse:18.025556564331055
+mean_n_feature:25.0
+current eps:0.16677181699666577
+exp_gen start:
+exp_gen finish!time use:98.86736297607422
+start agent train:
+epoch:0,agent_score:1019.7674560546875
+epoch:50,agent_loss:187192.359375,agent_score:1019.7681884765625
+epoch:100,agent_loss:197651.4375,agent_score:1019.7681274414062
+epoch:150,agent_loss:184133.0625,agent_score:1019.7669677734375
+epoch:200,agent_loss:188685.4375,agent_score:1019.7677612304688
+epoch:250,agent_loss:197496.15625,agent_score:1019.767822265625
+epoch:300,agent_loss:189499.921875,agent_score:1019.7682495117188
+epoch:350,agent_loss:188637.78125,agent_score:1019.7678833007812
+epoch:400,agent_loss:184379.46875,agent_score:1019.7684936523438
+epoch:450,agent_loss:166010.8125,agent_score:1019.7681274414062
+epoch:500,agent_loss:181489.140625,agent_score:1019.7681274414062
+Finish agent train!time use;503.32708621025085
+test finish!
+mean_mse:18.025556564331055
+mean_n_feature:25.0
+current eps:0.1500946352969992
+exp_gen start:
+exp_gen finish!time use:68.55466508865356
+start inf train:
+epoch:0,val_loss:71.25924682617188
+epoch:10,train_loss:25.52810287475586,val_loss:70.69170379638672
+epoch:20,train_loss:61.89282989501953,val_loss:70.28952026367188
+epoch:30,train_loss:47.69871520996094,val_loss:72.1973648071289
+epoch:40,train_loss:15.204521179199219,val_loss:70.67716979980469
+epoch:50,train_loss:29.339664459228516,val_loss:73.41587829589844
+epoch:60,train_loss:26.30331802368164,val_loss:74.46123504638672
+epoch:70,train_loss:45.767494201660156,val_loss:72.48228454589844
+epoch:80,train_loss:15.620615005493164,val_loss:72.60179138183594
+epoch:90,train_loss:42.81019592285156,val_loss:71.6376724243164
+epoch:100,train_loss:50.91263961791992,val_loss:72.1788330078125
+Finish inf train!time use:4.735682010650635
+test finish!
+mean_mse:17.691946029663086
+mean_n_feature:25.0
+current eps:0.1500946352969992
+exp_gen start:
+exp_gen finish!time use:62.647918939590454
+start agent train:
+epoch:0,agent_score:1020.6342163085938
+epoch:50,agent_loss:74308.359375,agent_score:1020.6329956054688
+epoch:100,agent_loss:70894.09375,agent_score:1020.6333618164062
+epoch:150,agent_loss:69874.4921875,agent_score:1020.6336059570312
+epoch:200,agent_loss:71864.015625,agent_score:1020.6326293945312
+epoch:250,agent_loss:75025.546875,agent_score:1020.6326904296875
+epoch:300,agent_loss:75459.9296875,agent_score:1020.6333618164062
+epoch:350,agent_loss:70919.3046875,agent_score:1020.6331176757812
+epoch:400,agent_loss:70551.75,agent_score:1020.6329345703125
+epoch:450,agent_loss:67084.2265625,agent_score:1020.6329345703125
+epoch:500,agent_loss:69505.453125,agent_score:1020.6334228515625
+Finish agent train!time use;480.6643977165222
+test finish!
+mean_mse:17.691946029663086
+mean_n_feature:25.0
+current eps:0.13508517176729928
+exp_gen start:
+exp_gen finish!time use:72.85714960098267
+start inf train:
+epoch:0,val_loss:31.757713317871094
+epoch:10,train_loss:32.654052734375,val_loss:34.133827209472656
+epoch:20,train_loss:46.9400634765625,val_loss:32.44682693481445
+epoch:30,train_loss:35.70299530029297,val_loss:35.221134185791016
+epoch:40,train_loss:21.384992599487305,val_loss:32.90315628051758
+epoch:50,train_loss:31.274635314941406,val_loss:33.42805099487305
+epoch:60,train_loss:49.120697021484375,val_loss:33.45188903808594
+epoch:70,train_loss:25.267675399780273,val_loss:33.70500564575195
+epoch:80,train_loss:31.537931442260742,val_loss:35.61708450317383
+epoch:90,train_loss:20.465320587158203,val_loss:36.39552688598633
+epoch:100,train_loss:24.646732330322266,val_loss:37.45879364013672
+Finish inf train!time use:5.552265167236328
+test finish!
+mean_mse:17.691946029663086
+mean_n_feature:25.0
+current eps:0.13508517176729928
+exp_gen start:
+exp_gen finish!time use:69.58104014396667
+start agent train:
+epoch:0,agent_score:1020.6334228515625
+epoch:50,agent_loss:167301.140625,agent_score:1020.6326904296875
+epoch:100,agent_loss:171006.734375,agent_score:1020.6325073242188
+epoch:150,agent_loss:172171.671875,agent_score:1020.6326293945312
+epoch:200,agent_loss:185339.78125,agent_score:1020.6328125
+epoch:250,agent_loss:170378.640625,agent_score:1020.6333618164062
+epoch:300,agent_loss:176127.375,agent_score:1020.6337280273438
+epoch:350,agent_loss:169276.953125,agent_score:1020.6337890625
+epoch:400,agent_loss:182397.546875,agent_score:1020.6331787109375
+epoch:450,agent_loss:170660.640625,agent_score:1020.6328125
+epoch:500,agent_loss:181108.109375,agent_score:1020.6334228515625
+Finish agent train!time use;484.32841992378235
+test finish!
+mean_mse:17.691946029663086
+mean_n_feature:25.0
+current eps:0.12157665459056936
+exp_gen start:
+exp_gen finish!time use:62.61248230934143
+start inf train:
+epoch:0,val_loss:54.45516586303711
+epoch:10,train_loss:43.63349533081055,val_loss:52.763145446777344
+epoch:20,train_loss:34.68130111694336,val_loss:48.47777557373047
+epoch:30,train_loss:31.93583106994629,val_loss:47.331695556640625
+epoch:40,train_loss:28.714637756347656,val_loss:47.16820526123047
+epoch:50,train_loss:24.690330505371094,val_loss:47.11447525024414
+epoch:60,train_loss:14.264325141906738,val_loss:47.58513641357422
+epoch:70,train_loss:33.96609878540039,val_loss:47.06342697143555
+epoch:80,train_loss:49.708229064941406,val_loss:45.095855712890625
+epoch:90,train_loss:25.28681182861328,val_loss:45.646095275878906
+epoch:100,train_loss:33.838172912597656,val_loss:47.41212844848633
+Finish inf train!time use:4.765585660934448
+test finish!
+mean_mse:17.50269317626953
+mean_n_feature:25.0
+current eps:0.12157665459056936
+exp_gen start:
+exp_gen finish!time use:62.159987926483154
+start agent train:
+epoch:0,agent_score:1021.9439086914062
+epoch:50,agent_loss:117601.875,agent_score:1021.9440307617188
+epoch:100,agent_loss:138837.390625,agent_score:1021.9442749023438
+epoch:150,agent_loss:132605.53125,agent_score:1021.9440307617188
+epoch:200,agent_loss:143447.171875,agent_score:1021.9441528320312
+epoch:250,agent_loss:132091.25,agent_score:1021.9442138671875
+epoch:300,agent_loss:134705.484375,agent_score:1021.9439086914062
+epoch:350,agent_loss:120646.6796875,agent_score:1021.9441528320312
+epoch:400,agent_loss:131445.046875,agent_score:1021.9434204101562
+epoch:450,agent_loss:123137.8671875,agent_score:1021.943115234375
+epoch:500,agent_loss:138561.171875,agent_score:1021.9429931640625
+Finish agent train!time use;487.5031027793884
+test finish!
+mean_mse:17.50269317626953
+mean_n_feature:25.0
+current eps:0.10941898913151243
+exp_gen start:
+exp_gen finish!time use:74.23317265510559
+start inf train:
+epoch:0,val_loss:28.716449737548828
+epoch:10,train_loss:41.609107971191406,val_loss:31.7969913482666
+epoch:20,train_loss:14.770479202270508,val_loss:29.202983856201172
+epoch:30,train_loss:5.441394805908203,val_loss:27.561229705810547
+epoch:40,train_loss:10.72331428527832,val_loss:27.296354293823242
+epoch:50,train_loss:22.66750717163086,val_loss:25.49879264831543
+epoch:60,train_loss:11.4935941696167,val_loss:27.04340362548828
+epoch:70,train_loss:21.29708480834961,val_loss:28.329814910888672
+epoch:80,train_loss:19.380563735961914,val_loss:28.242156982421875
+epoch:90,train_loss:13.526071548461914,val_loss:31.572227478027344
+epoch:100,train_loss:34.65766143798828,val_loss:27.22507095336914
+Finish inf train!time use:5.63683295249939
+test finish!
+mean_mse:16.455886840820312
+mean_n_feature:25.0
+current eps:0.10941898913151243
+exp_gen start:
+exp_gen finish!time use:71.30135011672974
+start agent train:
+epoch:0,agent_score:1024.7127685546875
+epoch:50,agent_loss:137149.765625,agent_score:1024.7127685546875
+epoch:100,agent_loss:134979.296875,agent_score:1024.713134765625
+epoch:150,agent_loss:142237.671875,agent_score:1024.7127685546875
+epoch:200,agent_loss:124904.3828125,agent_score:1024.7130126953125
+epoch:250,agent_loss:142617.796875,agent_score:1024.712890625
+epoch:300,agent_loss:150180.140625,agent_score:1024.713134765625
+epoch:350,agent_loss:136196.296875,agent_score:1024.713623046875
+epoch:400,agent_loss:141820.0,agent_score:1024.712158203125
+epoch:450,agent_loss:129751.1796875,agent_score:1024.7113037109375
+epoch:500,agent_loss:146154.78125,agent_score:1024.710693359375
+Finish agent train!time use;491.5131194591522
+test finish!
+mean_mse:16.455886840820312
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:62.48086714744568
+start inf train:
+epoch:0,val_loss:31.382949829101562
+epoch:10,train_loss:12.4799222946167,val_loss:31.46516227722168
+epoch:20,train_loss:7.24566650390625,val_loss:31.402935028076172
+epoch:30,train_loss:26.191951751708984,val_loss:32.01275634765625
+epoch:40,train_loss:15.529566764831543,val_loss:31.147403717041016
+epoch:50,train_loss:19.277286529541016,val_loss:31.31838607788086
+epoch:60,train_loss:13.495409965515137,val_loss:31.343313217163086
+epoch:70,train_loss:12.391786575317383,val_loss:32.455345153808594
+epoch:80,train_loss:23.579925537109375,val_loss:31.679670333862305
+epoch:90,train_loss:17.97426986694336,val_loss:32.006919860839844
+epoch:100,train_loss:12.059669494628906,val_loss:31.7760009765625
+Finish inf train!time use:4.7471699714660645
+test finish!
+mean_mse:15.604757308959961
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:64.0640242099762
+start agent train:
+epoch:0,agent_score:1023.94189453125
+epoch:50,agent_loss:121923.4375,agent_score:1023.9418334960938
+epoch:100,agent_loss:120213.6171875,agent_score:1023.9412231445312
+epoch:150,agent_loss:106105.9375,agent_score:1023.942138671875
+epoch:200,agent_loss:114225.9375,agent_score:1023.9425659179688
+epoch:250,agent_loss:117391.6015625,agent_score:1023.9423217773438
+epoch:300,agent_loss:107674.03125,agent_score:1023.9417724609375
+epoch:350,agent_loss:119295.78125,agent_score:1023.9418334960938
+epoch:400,agent_loss:112993.140625,agent_score:1023.9422607421875
+epoch:450,agent_loss:115205.234375,agent_score:1023.9421997070312
+epoch:500,agent_loss:114438.984375,agent_score:1023.9415283203125
+Finish agent train!time use;504.23075103759766
+test finish!
+mean_mse:15.604757308959961
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:54.35699725151062
+start inf train:
+epoch:0,val_loss:43.74939727783203
+epoch:10,train_loss:9.893253326416016,val_loss:42.112308502197266
+epoch:20,train_loss:16.08023452758789,val_loss:42.39979553222656
+epoch:30,train_loss:8.341255187988281,val_loss:39.66294860839844
+epoch:40,train_loss:1.7263950109481812,val_loss:40.66175842285156
+epoch:50,train_loss:16.571565628051758,val_loss:40.42971420288086
+epoch:60,train_loss:11.334030151367188,val_loss:39.13300704956055
+epoch:70,train_loss:8.283916473388672,val_loss:38.836158752441406
+epoch:80,train_loss:9.492721557617188,val_loss:37.387046813964844
+epoch:90,train_loss:13.464620590209961,val_loss:38.5925178527832
+epoch:100,train_loss:20.70197105407715,val_loss:37.874794006347656
+Finish inf train!time use:3.6561782360076904
+test finish!
+mean_mse:15.852307319641113
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:53.993732213974
+start agent train:
+epoch:0,agent_score:1023.8387451171875
+epoch:50,agent_loss:168179.109375,agent_score:1023.8392333984375
+epoch:100,agent_loss:170203.015625,agent_score:1023.8384399414062
+epoch:150,agent_loss:174393.859375,agent_score:1023.8387451171875
+epoch:200,agent_loss:181568.28125,agent_score:1023.8389282226562
+epoch:250,agent_loss:183304.65625,agent_score:1023.839111328125
+epoch:300,agent_loss:188767.703125,agent_score:1023.8390502929688
+epoch:350,agent_loss:184130.84375,agent_score:1023.8389282226562
+epoch:400,agent_loss:170725.5625,agent_score:1023.8392944335938
+epoch:450,agent_loss:168284.078125,agent_score:1023.83935546875
+epoch:500,agent_loss:174696.828125,agent_score:1023.8394775390625
+Finish agent train!time use;492.45458984375
+test finish!
+mean_mse:15.852307319641113
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:59.20970320701599
+start inf train:
+epoch:0,val_loss:22.146358489990234
+epoch:10,train_loss:16.566234588623047,val_loss:22.005599975585938
+epoch:20,train_loss:26.650711059570312,val_loss:22.300495147705078
+epoch:30,train_loss:17.281036376953125,val_loss:23.573577880859375
+epoch:40,train_loss:25.94915771484375,val_loss:22.950328826904297
+epoch:50,train_loss:10.892767906188965,val_loss:22.471651077270508
+epoch:60,train_loss:13.609180450439453,val_loss:22.400617599487305
+epoch:70,train_loss:20.523784637451172,val_loss:26.083425521850586
+epoch:80,train_loss:18.979310989379883,val_loss:24.858837127685547
+epoch:90,train_loss:18.18462371826172,val_loss:24.414878845214844
+epoch:100,train_loss:9.818429946899414,val_loss:23.05853271484375
+Finish inf train!time use:4.296097040176392
+test finish!
+mean_mse:15.599550247192383
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:57.641114234924316
+start agent train:
+epoch:0,agent_score:1024.2738037109375
+epoch:50,agent_loss:82577.828125,agent_score:1024.2733154296875
+epoch:100,agent_loss:84278.5078125,agent_score:1024.2734375
+epoch:150,agent_loss:84736.328125,agent_score:1024.2738037109375
+epoch:200,agent_loss:87956.7109375,agent_score:1024.2742919921875
+epoch:250,agent_loss:81410.703125,agent_score:1024.2742919921875
+epoch:300,agent_loss:85157.40625,agent_score:1024.2742919921875
+epoch:350,agent_loss:90814.1328125,agent_score:1024.27392578125
+epoch:400,agent_loss:83895.2578125,agent_score:1024.2738037109375
+epoch:450,agent_loss:86696.9375,agent_score:1024.2745361328125
+epoch:500,agent_loss:78119.078125,agent_score:1024.2725830078125
+Finish agent train!time use;489.8754823207855
+test finish!
+mean_mse:15.599550247192383
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:55.55616474151611
+start inf train:
+epoch:0,val_loss:28.90496826171875
+epoch:10,train_loss:19.28260040283203,val_loss:32.0496711730957
+epoch:20,train_loss:16.362855911254883,val_loss:30.45016098022461
+epoch:30,train_loss:10.79008960723877,val_loss:30.690372467041016
+epoch:40,train_loss:32.52137756347656,val_loss:37.861717224121094
+epoch:50,train_loss:23.317230224609375,val_loss:31.243572235107422
+epoch:60,train_loss:18.908798217773438,val_loss:32.664485931396484
+epoch:70,train_loss:25.450836181640625,val_loss:35.44413757324219
+epoch:80,train_loss:14.740829467773438,val_loss:31.683963775634766
+epoch:90,train_loss:25.5625057220459,val_loss:32.593326568603516
+epoch:100,train_loss:15.756814002990723,val_loss:32.33612823486328
+Finish inf train!time use:3.913726806640625
+test finish!
+mean_mse:15.599550247192383
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:55.70255208015442
+start agent train:
+epoch:0,agent_score:1024.2725830078125
+epoch:50,agent_loss:164475.9375,agent_score:1024.2734375
+epoch:100,agent_loss:161871.71875,agent_score:1024.274169921875
+epoch:150,agent_loss:164888.390625,agent_score:1024.274169921875
+epoch:200,agent_loss:162362.328125,agent_score:1024.2738037109375
+epoch:250,agent_loss:162218.046875,agent_score:1024.274169921875
+epoch:300,agent_loss:162154.78125,agent_score:1024.2738037109375
+epoch:350,agent_loss:146156.078125,agent_score:1024.2740478515625
+epoch:400,agent_loss:170872.125,agent_score:1024.2740478515625
+epoch:450,agent_loss:162031.984375,agent_score:1024.2742919921875
+epoch:500,agent_loss:167689.265625,agent_score:1024.2745361328125
+Finish agent train!time use;480.11917328834534
+test finish!
+mean_mse:15.599550247192383
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:57.734848737716675
+start inf train:
+epoch:0,val_loss:53.15177536010742
+epoch:10,train_loss:15.451713562011719,val_loss:51.6941032409668
+epoch:20,train_loss:21.99073600769043,val_loss:52.620277404785156
+epoch:30,train_loss:14.609670639038086,val_loss:52.308223724365234
+epoch:40,train_loss:15.5842924118042,val_loss:52.03009796142578
+epoch:50,train_loss:18.002771377563477,val_loss:52.692325592041016
+epoch:60,train_loss:15.670270919799805,val_loss:53.23274230957031
+epoch:70,train_loss:36.08087921142578,val_loss:53.9169807434082
+epoch:80,train_loss:18.647701263427734,val_loss:59.40433120727539
+epoch:90,train_loss:19.84024429321289,val_loss:56.11864471435547
+epoch:100,train_loss:21.01823616027832,val_loss:52.44733428955078
+Finish inf train!time use:3.8251793384552
+test finish!
+mean_mse:15.008613586425781
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:57.08387899398804
+start agent train:
+epoch:0,agent_score:1026.0242919921875
+epoch:50,agent_loss:77511.3515625,agent_score:1026.025146484375
+epoch:100,agent_loss:76153.5703125,agent_score:1026.02490234375
+epoch:150,agent_loss:73873.21875,agent_score:1026.0245361328125
+epoch:200,agent_loss:79145.7109375,agent_score:1026.025146484375
+epoch:250,agent_loss:75484.1953125,agent_score:1026.02392578125
+epoch:300,agent_loss:73515.3828125,agent_score:1026.02587890625
+epoch:350,agent_loss:79548.5625,agent_score:1026.0257568359375
+epoch:400,agent_loss:76763.0703125,agent_score:1026.0257568359375
+epoch:450,agent_loss:73022.25,agent_score:1026.0247802734375
+epoch:500,agent_loss:74446.1953125,agent_score:1026.025146484375
+Finish agent train!time use;482.10651445388794
+test finish!
+mean_mse:15.008613586425781
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:57.460798263549805
+start inf train:
+epoch:0,val_loss:33.1260871887207
+epoch:10,train_loss:16.38304901123047,val_loss:35.89073181152344
+epoch:20,train_loss:30.897132873535156,val_loss:41.13945388793945
+epoch:30,train_loss:19.27657699584961,val_loss:42.411338806152344
+epoch:40,train_loss:31.624530792236328,val_loss:43.13481521606445
+epoch:50,train_loss:19.245498657226562,val_loss:40.398048400878906
+epoch:60,train_loss:7.376621246337891,val_loss:41.13726043701172
+epoch:70,train_loss:11.547450065612793,val_loss:41.96240997314453
+epoch:80,train_loss:1.6101433038711548,val_loss:42.94293212890625
+epoch:90,train_loss:3.055116653442383,val_loss:43.118350982666016
+epoch:100,train_loss:12.873407363891602,val_loss:43.09183883666992
+Finish inf train!time use:4.508875608444214
+test finish!
+mean_mse:15.008613586425781
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:58.501460790634155
+start agent train:
+epoch:0,agent_score:1026.025146484375
+epoch:50,agent_loss:129601.828125,agent_score:1026.0247802734375
+epoch:100,agent_loss:120569.3046875,agent_score:1026.0250244140625
+epoch:150,agent_loss:133350.03125,agent_score:1026.0247802734375
+epoch:200,agent_loss:129072.8515625,agent_score:1026.0238037109375
+epoch:250,agent_loss:133468.65625,agent_score:1026.0242919921875
+epoch:300,agent_loss:130047.2109375,agent_score:1026.02392578125
+epoch:350,agent_loss:124707.9375,agent_score:1026.0242919921875
+epoch:400,agent_loss:123404.2421875,agent_score:1026.0244140625
+epoch:450,agent_loss:130580.2421875,agent_score:1026.0250244140625
+epoch:500,agent_loss:140940.734375,agent_score:1026.0247802734375
+Finish agent train!time use;496.44622445106506
+test finish!
+mean_mse:15.008613586425781
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:62.36196422576904
+start inf train:
+epoch:0,val_loss:31.563858032226562
+epoch:10,train_loss:29.94622230529785,val_loss:32.431724548339844
+epoch:20,train_loss:27.493202209472656,val_loss:33.35193634033203
+epoch:30,train_loss:12.639005661010742,val_loss:33.53605651855469
+epoch:40,train_loss:39.312904357910156,val_loss:34.919246673583984
+epoch:50,train_loss:33.61396408081055,val_loss:34.032867431640625
+epoch:60,train_loss:28.916637420654297,val_loss:33.141929626464844
+epoch:70,train_loss:26.159934997558594,val_loss:34.280494689941406
+epoch:80,train_loss:17.89739990234375,val_loss:34.801856994628906
+epoch:90,train_loss:11.806537628173828,val_loss:35.151947021484375
+epoch:100,train_loss:18.108854293823242,val_loss:36.649017333984375
+Finish inf train!time use:3.9062366485595703
+test finish!
+mean_mse:15.008613586425781
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:58.242645025253296
+start agent train:
+epoch:0,agent_score:1026.0247802734375
+epoch:50,agent_loss:82925.6328125,agent_score:1026.0244140625
+epoch:100,agent_loss:82850.4765625,agent_score:1026.0245361328125
+epoch:150,agent_loss:77700.9609375,agent_score:1026.02392578125
+epoch:200,agent_loss:84466.6640625,agent_score:1026.0238037109375
+epoch:250,agent_loss:82933.1015625,agent_score:1026.0230712890625
+epoch:300,agent_loss:82525.0859375,agent_score:1026.023681640625
+epoch:350,agent_loss:80684.8984375,agent_score:1026.0244140625
+epoch:400,agent_loss:83103.8046875,agent_score:1026.0245361328125
+epoch:450,agent_loss:83797.6796875,agent_score:1026.0240478515625
+epoch:500,agent_loss:89718.390625,agent_score:1026.024169921875
+Finish agent train!time use;482.8148159980774
+test finish!
+mean_mse:15.008613586425781
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:62.437570095062256
+start inf train:
+epoch:0,val_loss:27.043930053710938
+epoch:10,train_loss:12.14153003692627,val_loss:27.70209503173828
+epoch:20,train_loss:29.694271087646484,val_loss:27.88694190979004
+epoch:30,train_loss:12.240724563598633,val_loss:27.913387298583984
+epoch:40,train_loss:32.21396255493164,val_loss:28.200664520263672
+epoch:50,train_loss:28.087509155273438,val_loss:31.399179458618164
+epoch:60,train_loss:23.824382781982422,val_loss:30.393186569213867
+epoch:70,train_loss:25.65191078186035,val_loss:28.15558624267578
+epoch:80,train_loss:15.856134414672852,val_loss:28.726669311523438
+epoch:90,train_loss:20.933469772338867,val_loss:29.116867065429688
+epoch:100,train_loss:9.408918380737305,val_loss:28.174694061279297
+Finish inf train!time use:3.7859768867492676
+test finish!
+mean_mse:15.008613586425781
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:56.59314441680908
+start agent train:
+epoch:0,agent_score:1026.024169921875
+epoch:50,agent_loss:135268.265625,agent_score:1026.0240478515625
+epoch:100,agent_loss:124773.578125,agent_score:1026.02392578125
+epoch:150,agent_loss:131841.140625,agent_score:1026.0244140625
+epoch:200,agent_loss:141109.59375,agent_score:1026.0238037109375
+epoch:250,agent_loss:125321.2734375,agent_score:1026.024169921875
+epoch:300,agent_loss:139092.046875,agent_score:1026.0242919921875
+epoch:350,agent_loss:126190.1015625,agent_score:1026.0230712890625
+epoch:400,agent_loss:126217.015625,agent_score:1026.0238037109375
+epoch:450,agent_loss:125527.203125,agent_score:1026.024169921875
+epoch:500,agent_loss:134680.359375,agent_score:1026.0242919921875
+Finish agent train!time use;490.85272908210754
+test finish!
+mean_mse:15.008613586425781
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:55.03178548812866
+start inf train:
+epoch:0,val_loss:37.25576400756836
+epoch:10,train_loss:28.13030242919922,val_loss:39.734130859375
+epoch:20,train_loss:22.757091522216797,val_loss:36.79240417480469
+epoch:30,train_loss:36.965911865234375,val_loss:45.730995178222656
+epoch:40,train_loss:38.353797912597656,val_loss:47.478675842285156
+epoch:50,train_loss:27.822893142700195,val_loss:37.06950378417969
+epoch:60,train_loss:42.13137435913086,val_loss:37.40725326538086
+epoch:70,train_loss:35.27184295654297,val_loss:36.71372985839844
+epoch:80,train_loss:13.246234893798828,val_loss:36.38960647583008
+epoch:90,train_loss:16.336042404174805,val_loss:36.612396240234375
+epoch:100,train_loss:35.96900939941406,val_loss:35.51953125
+Finish inf train!time use:3.705831527709961
+test finish!
+mean_mse:15.581707000732422
+mean_n_feature:25.0
+current eps:0.1
+exp_gen start:
+exp_gen finish!time use:58.84942960739136
+start agent train:
+epoch:0,agent_score:1027.0904541015625
+epoch:50,agent_loss:88130.1015625,agent_score:1027.0909423828125
+epoch:100,agent_loss:84253.8828125,agent_score:1027.0909423828125
+epoch:150,agent_loss:87483.8984375,agent_score:1027.0909423828125
+epoch:200,agent_loss:84521.328125,agent_score:1027.0916748046875
+epoch:250,agent_loss:87908.53125,agent_score:1027.091796875
+epoch:300,agent_loss:85451.8828125,agent_score:1027.090576171875
+epoch:350,agent_loss:81480.0859375,agent_score:1027.0909423828125
+epoch:400,agent_loss:83200.046875,agent_score:1027.0908203125
+epoch:450,agent_loss:85407.7578125,agent_score:1027.09130859375
+epoch:500,agent_loss:81146.0078125,agent_score:1027.0914306640625
+Finish agent train!time use;481.2848551273346
+test finish!
+mean_mse:15.581707000732422
+mean_n_feature:25.0
